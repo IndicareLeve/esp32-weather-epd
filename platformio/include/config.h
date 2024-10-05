@@ -28,8 +28,8 @@
 //   DISP_7C_F  - 7.3in ACeP e-Paper (F)  800x480px  7-Color
 //   DISP_BW_V1 - 7.5in e-Paper (v1)      640x384px  Black/White
 // Uncomment the macro that identifies your physical panel.
-#define DISP_BW_V2
-// #define DISP_3C_B
+// #define DISP_BW_V2
+#define DISP_3C_B
 // #define DISP_7C_F
 // #define DISP_BW_V1
 
@@ -45,12 +45,12 @@
 // 3 COLOR E-INK ACCENT COLOR
 // Defines the 3rd color to be used when a 3+ color display is selected.
 #if defined(DISP_3C_B) || defined(DISP_7C_F)
-  // #define ACCENT_COLOR GxEPD_BLACK
-  #define ACCENT_COLOR GxEPD_RED
-  // #define ACCENT_COLOR GxEPD_GREEN
-  // #define ACCENT_COLOR GxEPD_BLUE
-  // #define ACCENT_COLOR GxEPD_YELLOW
-  // #define ACCENT_COLOR GxEPD_ORANGE
+// #define ACCENT_COLOR GxEPD_BLACK
+#define ACCENT_COLOR GxEPD_RED
+// #define ACCENT_COLOR GxEPD_GREEN
+// #define ACCENT_COLOR GxEPD_BLUE
+// #define ACCENT_COLOR GxEPD_YELLOW
+// #define ACCENT_COLOR GxEPD_ORANGE
 #endif
 
 // LOCALE
@@ -76,16 +76,16 @@
 //   Metric   : Celsius
 //   Imperial : Fahrenheit
 // #define UNITS_TEMP_KELVIN
-// #define UNITS_TEMP_CELSIUS
-#define UNITS_TEMP_FAHRENHEIT
+#define UNITS_TEMP_CELSIUS
+// #define UNITS_TEMP_FAHRENHEIT
 
 // UNITS - WIND SPEED
 //   Metric   : Kilometers per Hour
 //   Imperial : Miles per Hour
 // #define UNITS_SPEED_METERSPERSECOND
 // #define UNITS_SPEED_FEETPERSECOND
-// #define UNITS_SPEED_KILOMETERSPERHOUR
-#define UNITS_SPEED_MILESPERHOUR
+#define UNITS_SPEED_KILOMETERSPERHOUR
+// #define UNITS_SPEED_MILESPERHOUR
 // #define UNITS_SPEED_KNOTS
 // #define UNITS_SPEED_BEAUFORT
 
@@ -94,8 +94,8 @@
 //   Imperial : Inches of Mercury
 // #define UNITS_PRES_HECTOPASCALS
 // #define UNITS_PRES_PASCALS
-// #define UNITS_PRES_MILLIMETERSOFMERCURY
-#define UNITS_PRES_INCHESOFMERCURY
+#define UNITS_PRES_MILLIMETERSOFMERCURY
+// #define UNITS_PRES_INCHESOFMERCURY
 // #define UNITS_PRES_MILLIBARS
 // #define UNITS_PRES_ATMOSPHERES
 // #define UNITS_PRES_GRAMSPERSQUARECENTIMETER
@@ -104,16 +104,16 @@
 // UNITS - VISIBILITY DISTANCE
 //   Metric   : Kilometers
 //   Imperial : Miles
-// #define UNITS_DIST_KILOMETERS
-#define UNITS_DIST_MILES
+#define UNITS_DIST_KILOMETERS
+// #define UNITS_DIST_MILES
 
 // UNITS - PRECIPITATION (HOURLY)
 // Measure of precipitation.
 // This can either be Probability of Precipitation (PoP) or hourly volume.
 //   Metric   : Millimeters
 //   Imperial : Inches
-#define UNITS_HOURLY_PRECIP_POP
-// #define UNITS_HOURLY_PRECIP_MILLIMETERS
+// #define UNITS_HOURLY_PRECIP_POP
+#define UNITS_HOURLY_PRECIP_MILLIMETERS
 // #define UNITS_HOURLY_PRECIP_CENTIMETERS
 // #define UNITS_HOURLY_PRECIP_INCHES
 
@@ -123,9 +123,9 @@
 //   Metric   : Millimeters
 //   Imperial : Inches
 // #define UNITS_DAILY_PRECIP_POP
-// #define UNITS_DAILY_PRECIP_MILLIMETERS
+#define UNITS_DAILY_PRECIP_MILLIMETERS
 // #define UNITS_DAILY_PRECIP_CENTIMETERS
-#define UNITS_DAILY_PRECIP_INCHES
+// #define UNITS_DAILY_PRECIP_INCHES
 
 // Hypertext Transfer Protocol (HTTP)
 // HTTP
@@ -217,7 +217,7 @@
 //   FreeSans font, but this project supports the ability to modularly swap
 //   fonts. Using a font other than FreeSans may result in undesired spacing or
 //   other artifacts.
-#define FONT_HEADER "fonts/FreeSans.h"
+#define FONT_HEADER "fonts/Ubuntu_R.h"
 
 // DAILY PRECIPITATION
 // Daily precipitation indicated under Hi|Lo can optionally be configured using
@@ -240,7 +240,7 @@
 //   Extra information that can be displayed on the status bar. Set to 1 to
 //   enable.
 #define STATUS_BAR_EXTRAS_BAT_VOLTAGE 0
-#define STATUS_BAR_EXTRAS_WIFI_RSSI   0
+#define STATUS_BAR_EXTRAS_WIFI_RSSI 0
 
 // BATTERY MONITORING
 //   You may choose to power your weather display with or without a battery.
@@ -304,96 +304,56 @@ extern const uint32_t MAX_BATTERY_VOLTAGE;
 extern const uint32_t MIN_BATTERY_VOLTAGE;
 
 // CONFIG VALIDATION - DO NOT MODIFY
-#if !(  defined(DISP_BW_V2)  \
-      ^ defined(DISP_3C_B)   \
-      ^ defined(DISP_7C_F)   \
-      ^ defined(DISP_BW_V1))
-  #error Invalid configuration. Exactly one display panel must be selected.
+#if !(defined(DISP_BW_V2) ^ defined(DISP_3C_B) ^ defined(DISP_7C_F) ^ defined(DISP_BW_V1))
+#error Invalid configuration. Exactly one display panel must be selected.
 #endif
-#if !(  defined(DRIVER_WAVESHARE) \
-      ^ defined(DRIVER_DESPI_C02))
-  #error Invalid configuration. Exactly one driver board must be selected.
+#if !(defined(DRIVER_WAVESHARE) ^ defined(DRIVER_DESPI_C02))
+#error Invalid configuration. Exactly one driver board must be selected.
 #endif
 #if !(defined(LOCALE))
-  #error Invalid configuration. Locale not selected.
+#error Invalid configuration. Locale not selected.
 #endif
-#if !(  defined(UNITS_TEMP_KELVIN)      \
-      ^ defined(UNITS_TEMP_CELSIUS)     \
-      ^ defined(UNITS_TEMP_FAHRENHEIT))
-  #error Invalid configuration. Exactly one temperature unit must be selected.
+#if !(defined(UNITS_TEMP_KELVIN) ^ defined(UNITS_TEMP_CELSIUS) ^ defined(UNITS_TEMP_FAHRENHEIT))
+#error Invalid configuration. Exactly one temperature unit must be selected.
 #endif
-#if !(  defined(UNITS_SPEED_METERSPERSECOND)   \
-      ^ defined(UNITS_SPEED_FEETPERSECOND)     \
-      ^ defined(UNITS_SPEED_KILOMETERSPERHOUR) \
-      ^ defined(UNITS_SPEED_MILESPERHOUR)      \
-      ^ defined(UNITS_SPEED_KNOTS)             \
-      ^ defined(UNITS_SPEED_BEAUFORT))
-  #error Invalid configuration. Exactly one wind speed unit must be selected.
+#if !(defined(UNITS_SPEED_METERSPERSECOND) ^ defined(UNITS_SPEED_FEETPERSECOND) ^ defined(UNITS_SPEED_KILOMETERSPERHOUR) ^ defined(UNITS_SPEED_MILESPERHOUR) ^ defined(UNITS_SPEED_KNOTS) ^ defined(UNITS_SPEED_BEAUFORT))
+#error Invalid configuration. Exactly one wind speed unit must be selected.
 #endif
-#if !(  defined(UNITS_PRES_HECTOPASCALS)             \
-      ^ defined(UNITS_PRES_PASCALS)                  \
-      ^ defined(UNITS_PRES_MILLIMETERSOFMERCURY)     \
-      ^ defined(UNITS_PRES_INCHESOFMERCURY)          \
-      ^ defined(UNITS_PRES_MILLIBARS)                \
-      ^ defined(UNITS_PRES_ATMOSPHERES)              \
-      ^ defined(UNITS_PRES_GRAMSPERSQUARECENTIMETER) \
-      ^ defined(UNITS_PRES_POUNDSPERSQUAREINCH))
-  #error Invalid configuration. Exactly one pressure unit must be selected.
+#if !(defined(UNITS_PRES_HECTOPASCALS) ^ defined(UNITS_PRES_PASCALS) ^ defined(UNITS_PRES_MILLIMETERSOFMERCURY) ^ defined(UNITS_PRES_INCHESOFMERCURY) ^ defined(UNITS_PRES_MILLIBARS) ^ defined(UNITS_PRES_ATMOSPHERES) ^ defined(UNITS_PRES_GRAMSPERSQUARECENTIMETER) ^ defined(UNITS_PRES_POUNDSPERSQUAREINCH))
+#error Invalid configuration. Exactly one pressure unit must be selected.
 #endif
-#if !(  defined(UNITS_DIST_KILOMETERS) \
-      ^ defined(UNITS_DIST_MILES))
-  #error Invalid configuration. Exactly one distance unit must be selected.
+#if !(defined(UNITS_DIST_KILOMETERS) ^ defined(UNITS_DIST_MILES))
+#error Invalid configuration. Exactly one distance unit must be selected.
 #endif
-#if !(  defined(UNITS_HOURLY_PRECIP_POP)         \
-      ^ defined(UNITS_HOURLY_PRECIP_MILLIMETERS) \
-      ^ defined(UNITS_HOURLY_PRECIP_CENTIMETERS) \
-      ^ defined(UNITS_HOURLY_PRECIP_INCHES))
-  #error Invalid configuration. Exactly one houly precipitation measurement must be selected.
+#if !(defined(UNITS_HOURLY_PRECIP_POP) ^ defined(UNITS_HOURLY_PRECIP_MILLIMETERS) ^ defined(UNITS_HOURLY_PRECIP_CENTIMETERS) ^ defined(UNITS_HOURLY_PRECIP_INCHES))
+#error Invalid configuration. Exactly one houly precipitation measurement must be selected.
 #endif
-#if !(  defined(UNITS_DAILY_PRECIP_POP)         \
-      ^ defined(UNITS_DAILY_PRECIP_MILLIMETERS) \
-      ^ defined(UNITS_DAILY_PRECIP_CENTIMETERS) \
-      ^ defined(UNITS_DAILY_PRECIP_INCHES))
-  #error Invalid configuration. Exactly one daily precipitation measurement must be selected.
+#if !(defined(UNITS_DAILY_PRECIP_POP) ^ defined(UNITS_DAILY_PRECIP_MILLIMETERS) ^ defined(UNITS_DAILY_PRECIP_CENTIMETERS) ^ defined(UNITS_DAILY_PRECIP_INCHES))
+#error Invalid configuration. Exactly one daily precipitation measurement must be selected.
 #endif
-#if !(  defined(USE_HTTP)                   \
-      ^ defined(USE_HTTPS_NO_CERT_VERIF)    \
-      ^ defined(USE_HTTPS_WITH_CERT_VERIF))
-  #error Invalid configuration. Exactly one HTTP mode must be selected.
+#if !(defined(USE_HTTP) ^ defined(USE_HTTPS_NO_CERT_VERIF) ^ defined(USE_HTTPS_WITH_CERT_VERIF))
+#error Invalid configuration. Exactly one HTTP mode must be selected.
 #endif
-#if !(  defined(WIND_INDICATOR_ARROW)                         \
-      || (                                                    \
-          defined(WIND_INDICATOR_NUMBER)                      \
-        ^ defined(WIND_INDICATOR_CPN_CARDINAL)                \
-        ^ defined(WIND_INDICATOR_CPN_INTERCARDINAL)           \
-        ^ defined(WIND_INDICATOR_CPN_SECONDARY_INTERCARDINAL) \
-        ^ defined(WIND_INDICATOR_CPN_TERTIARY_INTERCARDINAL)  \
-      )                                                       \
-      ^ defined(WIND_INDICATOR_NONE))
-  #error Invalid configuration. Illegal selction of wind indicator(s).
+#if !(defined(WIND_INDICATOR_ARROW) || (defined(WIND_INDICATOR_NUMBER) ^ defined(WIND_INDICATOR_CPN_CARDINAL) ^ defined(WIND_INDICATOR_CPN_INTERCARDINAL) ^ defined(WIND_INDICATOR_CPN_SECONDARY_INTERCARDINAL) ^ defined(WIND_INDICATOR_CPN_TERTIARY_INTERCARDINAL)) ^ defined(WIND_INDICATOR_NONE))
+#error Invalid configuration. Illegal selction of wind indicator(s).
 #endif
-#if defined(WIND_INDICATOR_ARROW)                   \
- && !(  defined(WIND_ICONS_CARDINAL)                \
-      ^ defined(WIND_ICONS_INTERCARDINAL)           \
-      ^ defined(WIND_ICONS_SECONDARY_INTERCARDINAL) \
-      ^ defined(WIND_ICONS_TERTIARY_INTERCARDINAL)  \
-      ^ defined(WIND_ICONS_360))
-  #error Invalid configuration. Exactly one wind direction icon precision level must be selected.
+#if defined(WIND_INDICATOR_ARROW) && !(defined(WIND_ICONS_CARDINAL) ^ defined(WIND_ICONS_INTERCARDINAL) ^ defined(WIND_ICONS_SECONDARY_INTERCARDINAL) ^ defined(WIND_ICONS_TERTIARY_INTERCARDINAL) ^ defined(WIND_ICONS_360))
+#error Invalid configuration. Exactly one wind direction icon precision level must be selected.
 #endif
 #if !(defined(FONT_HEADER))
-  #error Invalid configuration. Font not selected.
+#error Invalid configuration. Font not selected.
 #endif
 #if !(defined(DISPLAY_DAILY_PRECIP))
-  #error Invalid configuration. DISPLAY_DAILY_PRECIP not defined.
+#error Invalid configuration. DISPLAY_DAILY_PRECIP not defined.
 #endif
 #if !(defined(DISPLAY_ALERTS))
-  #error Invalid configuration. DISPLAY_ALERTS not defined.
+#error Invalid configuration. DISPLAY_ALERTS not defined.
 #endif
 #if !(defined(BATTERY_MONITORING))
-  #error Invalid configuration. BATTERY_MONITORING not defined.
+#error Invalid configuration. BATTERY_MONITORING not defined.
 #endif
 #if !(defined(DEBUG_LEVEL))
-  #error Invalid configuration. DEBUG_LEVEL not defined.
+#error Invalid configuration. DEBUG_LEVEL not defined.
 #endif
 
 #endif
